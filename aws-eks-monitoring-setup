@@ -183,14 +183,14 @@ http://<your-ec2-public-ip>:9093
 
 PART 9 — Import Dashboard 
 
-Your can either use dashboard 3662 (or) 15757
+Your can either use dashboard 3662 (or) 15757 (or) 1860
 
 In Grafana:
 
 Go to Dashboards -> Click Import
 
 Enter ID:
-15757 (or) 3662
+15757 (or) 3662 (or) 1860
 
 Click Load
 
