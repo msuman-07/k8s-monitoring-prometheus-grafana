@@ -93,8 +93,6 @@ After deployment:
 - Production-Style Monitoring Stack Deployment
 - AWS & DevOps Tooling
 
----
-
 ## Author
 
 Suman M
