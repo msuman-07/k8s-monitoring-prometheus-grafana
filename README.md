@@ -1,37 +1,21 @@
 # Kubernetes Monitoring on AWS EKS  
-### Prometheus + Grafana + Alertmanager Setup
+### Prometheus + Grafana + Alertmanager
 
 ## Overview
 
-This project demonstrates an end-to-end monitoring setup on **Amazon EKS** using:
+This project demonstrates a complete monitoring setup on **Amazon EKS** using Prometheus, Grafana, and Alertmanager.
 
-- Amazon EC2 (Bastion Host)
-- IAM Role (Administrator access for cluster operations)
-- Amazon EKS (Kubernetes Cluster)
+The infrastructure includes:
+
+- EC2 Bastion Server with IAM Role
+- Amazon EKS Cluster
 - Managed Node Group
-- Helm
-- Prometheus
-- Grafana
-- Alertmanager
-
-The setup provisions a Kubernetes cluster and deploys the `kube-prometheus-stack` for cluster observability.
+- Helm-based deployment of kube-prometheus-stack
+- Grafana dashboards for cluster and node metrics
 
 ---
 
-## What This Project Does
-
-- Creates an EC2 bastion server with IAM role attached
-- Installs required CLI tools (AWS CLI, kubectl, eksctl, Helm)
-- Provisions an Amazon EKS cluster
-- Creates a managed node group
-- Deploys Prometheus, Grafana, and Alertmanager using Helm
-- Configures port-forwarding to access monitoring dashboards
-- Demonstrates dashboard import in Grafana
-- Includes full cleanup steps to stop AWS billing
-
----
-
-## Technologies Used
+## Architecture Components
 
 - AWS EC2
 - AWS IAM
@@ -41,33 +25,53 @@ The setup provisions a Kubernetes cluster and deploys the `kube-prometheus-stack
 - Prometheus
 - Grafana
 - Alertmanager
-- Ubuntu 22.04
+- Node Exporter
+- kube-state-metrics
 
 ---
 
-## Prerequisites
+## 📊 Monitoring Dashboards
 
-- AWS Account
-- Region set to `us-east-1` (or modify commands accordingly)
-- EC2 instance with IAM role attached (AdministratorAccess)
-- SSH key pair
+### 1️⃣ Kubernetes Cluster Overview
+
+Displays:
+
+- Global CPU Usage
+- Global RAM Usage
+- Resource Count
+- Running Pods
+- Node Status
+
+![Kubernetes Cluster Overview](images/k8s-cluster-overview-dashboard.png)
 
 ---
 
-## Monitoring Stack
+### 2️⃣ Node Exporter Metrics Dashboard
 
-The project deploys:
+Displays:
 
-- **Prometheus** – Metrics collection
-- **Grafana** – Visualization dashboards
-- **Alertmanager** – Alert handling
-- **Node Exporter & kube-state-metrics** – Cluster metrics
+- CPU Utilization
+- Memory Usage
+- Disk Usage
+- Network Traffic
+- System Uptime
 
-Deployment is done using:
+![Node Exporter Dashboard](images/node-exporter-metrics-dashboard.png)
 
+---
 
-prometheus-community/kube-prometheus-stack
+## Deployment Summary
 
+This project performs the following:
+
+- Creates EC2 Bastion instance
+- Attaches IAM role (AdministratorAccess)
+- Installs AWS CLI, kubectl, eksctl, Helm
+- Provisions EKS cluster
+- Creates managed node group
+- Deploys kube-prometheus-stack via Helm
+- Configures port forwarding for Grafana, Prometheus, Alertmanager
+- Imports production-grade Grafana dashboards
 
 ---
 
@@ -79,36 +83,17 @@ After deployment:
 - Prometheus → `http://<ec2-public-ip>:9090`
 - Alertmanager → `http://<ec2-public-ip>:9093`
 
-Grafana default credentials:
-
-
-Username: admin
-Password: prom-operator
-
-
 ---
 
-## Cleanup
+## Skills Demonstrated
 
-To avoid AWS charges:
+- Cloud Infrastructure Provisioning
+- Kubernetes Cluster Management
+- Observability & Monitoring
+- Production-Style Monitoring Stack Deployment
+- AWS & DevOps Tooling
 
-helm uninstall monitoring --namespace monitoring
-kubectl delete ns monitoring
-eksctl delete cluster --name observability6 --region us-east-1
-
-Then terminate the EC2 instance from the AWS Console.
-
-## Purpose
-
-This project demonstrates practical knowledge of:
-
-Kubernetes cluster provisioning
-
-Cloud infrastructure management
-
-Observability stack deployment
-
-Production-style monitoring setup on AWS
+---
 
 ## Author
 
