@@ -98,7 +98,7 @@ eksctl delete cluster --name observability6 --region us-east-1
 
 Then terminate the EC2 instance from the AWS Console.
 
-Purpose
+## Purpose
 
 This project demonstrates practical knowledge of:
 
